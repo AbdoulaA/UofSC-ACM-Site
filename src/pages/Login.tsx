@@ -109,7 +109,7 @@ const Login: React.FC = () => {
       <Card className="w-full max-w-md animate-fade-up">
         <CardHeader className="text-center">
           <div className="w-24 h-24 mx-auto rounded-2xl flex items-center justify-center">
-            <img src="./public/acmlogo-grad.png" alt="ACM Logo" />
+            <img src="/acmlogo-grad.png" alt="ACM Logo" />
           </div>
           <CardTitle className="text-2xl font-display">
             Login
