@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 animate-fade-up text-primary-foreground" style={{ animationDelay: '0.1s' }}>
             Association for
             <br />
-            <span className="text-gradient-garnet">Computing Machinery</span>
+            <span className="text-gradient-garnet-light">Computing Machinery</span>
           </h1>
 
           {/* Subtitle */}
