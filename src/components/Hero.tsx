@@ -24,11 +24,7 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8 animate-fade-up">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-sm font-medium text-primary-foreground/80">
-              University of South Carolina
-            </span>
+          <div className="mb-14">
           </div>
 
           {/* Main Heading */}
@@ -40,8 +36,8 @@ const Hero: React.FC = () => {
 
           {/* Subtitle */}
           <p className="text-lg md:text-xl text-primary-foreground/70 max-w-2xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            Empowering the next generation of computing professionals through workshops, 
-            networking, and hands-on experience. Join the largest computing society at UofSC.
+We're the ACM Chapter at the University of South Carolina.
+
           </p>
 
           {/* CTA Buttons */}
@@ -60,7 +56,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 max-w-xl mx-auto animate-fade-up" style={{ animationDelay: '0.4s' }}>
+          {/* <div className="grid grid-cols-3 gap-8 max-w-xl mx-auto animate-fade-up mb-36" style={{ animationDelay: '0.4s' }}>
             <div className="text-center">
               <div className="flex items-center justify-center w-12 h-12 mx-auto mb-3 rounded-xl bg-primary/20">
                 <Users className="w-6 h-6 text-primary" />
@@ -82,12 +78,12 @@ const Hero: React.FC = () => {
               <div className="text-3xl font-display font-bold text-primary-foreground">15+</div>
               <div className="text-sm text-primary-foreground/60">Workshops</div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
       {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+      <div className="mt-14 absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };

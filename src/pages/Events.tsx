@@ -3,7 +3,7 @@ import { Filter } from 'lucide-react';
 import EventCard from '@/components/EventCard';
 import { Button } from '@/components/ui/button';
 import { useAdmin } from '@/context/AdminContext';
-import { Event } from '@/lib/mockData';
+import { Event } from '@/lib/types';
 
 const Events: React.FC = () => {
   const { events } = useAdmin();

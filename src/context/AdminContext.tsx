@@ -1,79 +1,114 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { Member, Event, mockMembers, mockEvents } from '@/lib/mockData';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
+import { jwtDecode } from "jwt-decode";
+import { Member, Event } from "@/lib/types"; // <-- no mock import
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+/* ---------------- Types ---------------- */
+
+interface JwtPayload {
+  role?: string;
+  exp?: number;
+}
 
 interface AdminContextType {
   isAdmin: boolean;
   setIsAdmin: (value: boolean) => void;
+  logout: () => void;
+
   members: Member[];
   events: Event[];
-  addMember: (member: Omit<Member, 'id'>) => void;
-  updateMember: (id: string, member: Partial<Member>) => void;
-  deleteMember: (id: string) => void;
-  addEvent: (event: Omit<Event, 'id'>) => void;
-  updateEvent: (id: string, event: Partial<Event>) => void;
-  deleteEvent: (id: string) => void;
+
+  refreshMembers: () => Promise<void>;
+  refreshEvents: () => Promise<void>;
 }
+
+/* ---------------- Context ---------------- */
 
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
 
-export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+/* ---------------- Provider ---------------- */
+
+export const AdminProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [members, setMembers] = useState<Member[]>(mockMembers);
-  const [events, setEvents] = useState<Event[]>(mockEvents);
+  const [members, setMembers] = useState<Member[]>([]);
+  const [events, setEvents] = useState<Event[]>([]);
 
-  const addMember = (member: Omit<Member, 'id'>) => {
-    const newMember: Member = {
-      ...member,
-      id: Date.now().toString(),
-    };
-    setMembers((prev) => [...prev, newMember]);
+  /* ---------------- Detect Role from JWT ---------------- */
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (!token) return;
+
+    try {
+      const decoded = jwtDecode<JwtPayload>(token);
+      setIsAdmin(decoded.role === "admin" || decoded.role === "super");
+    } catch {
+      localStorage.removeItem("access_token");
+      setIsAdmin(false);
+    }
+  }, []);
+
+  /* ---------------- Fetch API Data ---------------- */
+
+  const refreshEvents = async () => {
+    try {
+      const res = await fetch(`${API_URL}/events`);
+      if (res.ok) {
+        setEvents(await res.json());
+      }
+    } catch (err) {
+      console.error("Failed to fetch events", err);
+    }
   };
 
-  const updateMember = (id: string, updatedData: Partial<Member>) => {
-    setMembers((prev) =>
-      prev.map((member) =>
-        member.id === id ? { ...member, ...updatedData } : member
-      )
-    );
+  const refreshMembers = async () => {
+    try {
+      const res = await fetch(`${API_URL}/members`);
+      if (res.ok) {
+        setMembers(await res.json());
+      }
+    } catch (err) {
+      console.error("Failed to fetch members", err);
+    }
   };
 
-  const deleteMember = (id: string) => {
-    setMembers((prev) => prev.filter((member) => member.id !== id));
+  /* ---------------- Initial Load ---------------- */
+
+  useEffect(() => {
+    refreshEvents();
+    refreshMembers();
+  }, []);
+
+  /* ---------------- Logout ---------------- */
+
+  const logout = () => {
+    localStorage.removeItem("access_token");
+    setIsAdmin(false);
+    setMembers([]);
+    setEvents([]);
   };
 
-  const addEvent = (event: Omit<Event, 'id'>) => {
-    const newEvent: Event = {
-      ...event,
-      id: Date.now().toString(),
-    };
-    setEvents((prev) => [...prev, newEvent]);
-  };
-
-  const updateEvent = (id: string, updatedData: Partial<Event>) => {
-    setEvents((prev) =>
-      prev.map((event) =>
-        event.id === id ? { ...event, ...updatedData } : event
-      )
-    );
-  };
-
-  const deleteEvent = (id: string) => {
-    setEvents((prev) => prev.filter((event) => event.id !== id));
-  };
+  /* ---------------- Provider ---------------- */
 
   return (
     <AdminContext.Provider
       value={{
         isAdmin,
         setIsAdmin,
+        logout,
         members,
         events,
-        addMember,
-        updateMember,
-        deleteMember,
-        addEvent,
-        updateEvent,
-        deleteEvent,
+        refreshMembers,
+        refreshEvents,
       }}
     >
       {children}
@@ -81,10 +116,12 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   );
 };
 
+/* ---------------- Hook ---------------- */
+
 export const useAdmin = () => {
   const context = useContext(AdminContext);
   if (!context) {
-    throw new Error('useAdmin must be used within an AdminProvider');
+    throw new Error("useAdmin must be used within an AdminProvider");
   }
   return context;
 };

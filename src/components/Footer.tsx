@@ -10,9 +10,9 @@ const Footer: React.FC = () => {
           {/* Brand */}
           <div className="md:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-garnet rounded-lg flex items-center justify-center shadow-garnet">
+              {/* <div className="w-10 h-10 bg-gradient-garnet rounded-lg flex items-center justify-center shadow-garnet">
                 <Terminal className="w-5 h-5 text-primary-foreground" />
-              </div>
+              </div> */}
               <div className="flex flex-col">
                 <span className="font-display font-bold text-lg leading-tight text-card-foreground">
                   ACM at UofSC
@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
               The University of South Carolina chapter of the Association for Computing Machinery. 
               Building the future of computing, one student at a time.
             </p>
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
               <a
                 href="https://github.com"
                 target="_blank"
@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
               >
                 <Mail className="w-4 h-4" />
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* Quick Links */}
@@ -77,9 +77,9 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <a href="https://www.acm.org/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  ACM International
-                </a>
+              <Link to="/login" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Admin
+                </Link>
               </li>
             </ul>
           </div>
