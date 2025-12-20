@@ -40,7 +40,7 @@
     /* Custom tokens */
     --garnet: 350 70% 37%;
     --garnet-dark: 350 70% 28%;
-    --garnet-light: 350 70% 45%;
+    --garnet-light: 350 80% 55%;
     --pure-white: 0 0% 100%;
     --off-white: 0 0% 98%;
     --rich-black: 0 0% 6%;
@@ -137,6 +137,10 @@
 
   .bg-gradient-garnet {
     background-image: var(--gradient-garnet);
+  }
+
+  .bg-gradient-garnet-light {
+    background-image: var(--gradient-garnet-light);
   }
 
   .bg-gradient-hero {

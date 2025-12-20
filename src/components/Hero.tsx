@@ -29,30 +29,30 @@ const Hero: React.FC = () => {
 
           {/* Main Heading */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 animate-fade-up text-primary-foreground" style={{ animationDelay: '0.1s' }}>
-            Association for
+            ACM at
             <br />
-            <span className="text-gradient-garnet-light">Computing Machinery</span>
+            <span className="text-garnet-light">UofSC</span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-lg md:text-xl text-primary-foreground/70 max-w-2xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-We're the ACM Chapter at the University of South Carolina.
+We're the ACM (Association for Computing Machinery) Chapter at the University of South Carolina.
 
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-up" style={{ animationDelay: '0.3s' }}>
             <Link to="/events">
-              <Button variant="hero" size="xl">
+              <Button variant="heroLight" size="xl">
                 Explore Events
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </Link>
-            <Link to="/about">
+            {/* <Link to="/about">
               <Button variant="heroOutline" size="xl">
                 Learn More
               </Button>
-            </Link>
+            </Link> */}
           </div>
 
           {/* Stats */}

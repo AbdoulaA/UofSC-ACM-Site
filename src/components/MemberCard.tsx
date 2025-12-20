@@ -10,7 +10,7 @@ interface Props {
 
 const MemberCard: React.FC<Props> = ({ member }) => {
   return (
-    <div className="rounded-2xl bg-card border border-border p-6 text-center hover-lift">
+    <div className="rounded-2xl bg-card border border-border p-6 text-center">
       {member.imageUrl ? (
         <img
           src={`${API_URL}${member.imageUrl}`}

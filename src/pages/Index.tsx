@@ -83,6 +83,42 @@ const Index: React.FC = () => {
           </div>
         </div>
       </section>
+      {/* CTA Section */}
+      <section className="py-24 bg-gradient-hero">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-primary-foreground mb-6">
+            Ready to Join?
+          </h2>
+          <p className="text-primary-foreground/70 max-w-xl mx-auto mb-8">
+            Become a part of the largest computing community at the University
+            of South Carolina. No experience required!
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="https://discord.gg/XANbqEmR"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="heroOutline" size="xl" className="gap-2">
+                <FaDiscord className="" />
+                Join Our Discord
+              </Button>
+            </a>
+
+            <a
+              href="https://www.instagram.com/uofscacm/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="hero" size="xl" className="gap-2">
+                <Instagram className="w-14 h-14 shrink-0" />
+                Follow on Instagram
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* Upcoming Events Section */}
       <section className="py-24 bg-muted/30">
@@ -154,42 +190,6 @@ const Index: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-hero">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-primary-foreground mb-6">
-            Ready to Join?
-          </h2>
-          <p className="text-primary-foreground/70 max-w-xl mx-auto mb-8">
-            Become a part of the largest computing community at the University
-            of South Carolina. No experience required!
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://discord.gg/XANbqEmR"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="heroOutline" size="xl" className="gap-2">
-                <FaDiscord className="" />
-                Join Our Discord
-              </Button>
-            </a>
-
-            <a
-              href="https://www.instagram.com/uofscacm/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="hero" size="xl" className="gap-2">
-                <Instagram className="w-14 h-14 shrink-0" />
-                Follow on Instagram
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
     </main>
   );
 };
