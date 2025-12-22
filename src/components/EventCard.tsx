@@ -47,7 +47,10 @@ const EventCard: React.FC<Props> = ({ event }) => {
         <div className="space-y-1 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4" />
-            <span>{new Date(event.date).toLocaleDateString()}</span>
+            <span>{new Date(event.date + "T00:00:00").toLocaleDateString("en-US", {
+  timeZone: "America/New_York",
+})
+}</span>
           </div>
 
           <div className="flex items-center gap-2">
