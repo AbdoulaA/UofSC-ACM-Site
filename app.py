@@ -294,17 +294,15 @@ def post_event_to_discord(event_doc):
     embed = {
         "title": f"New ACM Event: {event_doc['title']}",
         "description": event_doc["description"],
+        "color": 0x8C1D40,
         "fields": [
             {"name": "Date", "value": event_doc["date"], "inline": True},
             {"name": "Time", "value": event_doc["time"], "inline": True},
             {"name": "Location", "value": event_doc["location"], "inline": False},
             {"name": "Category", "value": event_doc["category"].title(), "inline": True},
         ],
-        "footer": {
-            "text": "ACM at UofSC"
-        }
+        "footer": {"text": "ACM at UofSC"}
     }
-
     if event_link:
         embed["url"] = event_link
 
