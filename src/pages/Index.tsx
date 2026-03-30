@@ -96,7 +96,7 @@ const Index: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://discord.gg/XANbqEmR"
+              href="https://discord.gg/9mVHn87jpr"
               target="_blank"
               rel="noopener noreferrer"
             >
