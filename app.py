@@ -294,7 +294,7 @@ def post_event_to_discord(event_doc):
     embed = {
         "title": f"{event_doc['title']}",
         "description": event_doc["description"],
-        "color": 0x8C1D40,
+        "color": 0x0000FF,
         "fields": [
             {"name": "Date", "value": event_doc["date"], "inline": True},
             {"name": "Time", "value": event_doc["time"], "inline": True},
