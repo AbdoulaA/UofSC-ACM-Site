@@ -4,7 +4,7 @@ import secrets
 import datetime
 from datetime import timedelta
 from functools import wraps
-
+import requests
 from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
 
@@ -277,6 +277,51 @@ def get_event_image(file_id):
     return Response(grid_out.read(), mimetype=content_type)
 
 
+DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+
+
+def post_event_to_discord(event_doc):
+    if not DISCORD_WEBHOOK_URL:
+        print("DISCORD_WEBHOOK_URL is not set, skipping Discord post.")
+        return
+
+    image_url = None
+    if event_doc.get("imageFileId"):
+        # Replace this with your real backend domain
+        image_url = f"https://api.yourdomain.com/events/image/{event_doc['imageFileId']}"
+
+    event_link = event_doc.get("link")
+
+    embed = {
+        "title": f"New ACM Event: {event_doc['title']}",
+        "description": event_doc["description"],
+        "fields": [
+            {"name": "Date", "value": event_doc["date"], "inline": True},
+            {"name": "Time", "value": event_doc["time"], "inline": True},
+            {"name": "Location", "value": event_doc["location"], "inline": False},
+            {"name": "Category", "value": event_doc["category"].title(), "inline": True},
+        ],
+        "footer": {
+            "text": "ACM at UofSC"
+        }
+    }
+
+    if event_link:
+        embed["url"] = event_link
+
+    if image_url:
+        embed["image"] = {"url": image_url}
+
+    payload = {
+        "content": "A new ACM event has been posted.",
+        "embeds": [embed]
+    }
+
+    try:
+        response = requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=10)
+        response.raise_for_status()
+    except Exception as e:
+        print(f"Failed to post event to Discord: {e}")
 
 # ---- CREATE EVENT ----
 @app.route("/events", methods=["POST"])
@@ -297,6 +342,8 @@ def create_event():
             content_type=image.mimetype,
         )
 
+    now = datetime.datetime.utcnow().isoformat()
+
     doc = {
         "title": payload["title"],
         "description": payload["description"],
@@ -305,14 +352,18 @@ def create_event():
         "location": payload["location"],
         "category": payload["category"],
         "imageFileId": image_file_id,
-        "link": payload.get("link") or None,  # ✅ OPTIONAL
-        "created_at": datetime.datetime.utcnow().isoformat(),
-        "updated_at": datetime.datetime.utcnow().isoformat(),
+        "link": payload.get("link") or None,
+        "created_at": now,
+        "updated_at": now,
     }
 
     res = db.events.insert_one(doc)
-    return jsonify(serialize_event(db.events.find_one({"_id": res.inserted_id}))), 201
+    saved_event = db.events.find_one({"_id": res.inserted_id})
 
+    # Post to Discord after successful save
+    post_event_to_discord(saved_event)
+
+    return jsonify(serialize_event(saved_event)), 201
 
 # ---- UPDATE EVENT ----
 @app.route("/events/<event_id>", methods=["PUT"])
