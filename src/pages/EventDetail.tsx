@@ -53,7 +53,7 @@ const EventDetail: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
-              {new Date(event.date).toLocaleDateString()}
+              {new Date(event.date + "T00:00:00").toLocaleDateString()}
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
