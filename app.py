@@ -287,8 +287,7 @@ def post_event_to_discord(event_doc):
 
     image_url = None
     if event_doc.get("imageFileId"):
-        # Replace this with your real backend domain
-        image_url = f"https://api.yourdomain.com/events/image/{event_doc['imageFileId']}"
+        image_url = f"https://api.abdorruhman.dev/events/image/{event_doc['imageFileId']}"
 
     event_link = event_doc.get("link")
 
