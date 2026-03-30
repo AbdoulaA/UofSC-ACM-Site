@@ -310,7 +310,7 @@ def post_event_to_discord(event_doc):
         embed["image"] = {"url": image_url}
         
     payload = {
-        "content": "ACM Announces...",
+        "content": "@everyone ACM Announces...",
         "embeds": [embed]
     }
 
