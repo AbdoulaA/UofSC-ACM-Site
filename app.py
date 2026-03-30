@@ -292,7 +292,7 @@ def post_event_to_discord(event_doc):
     event_link = event_doc.get("link")
 
     embed = {
-        "title": f"New ACM Event: {event_doc['title']}",
+        "title": f"{event_doc['title']}",
         "description": event_doc["description"],
         "color": 0x8C1D40,
         "fields": [
@@ -308,9 +308,9 @@ def post_event_to_discord(event_doc):
 
     if image_url:
         embed["image"] = {"url": image_url}
-
+        
     payload = {
-        "content": "A new ACM event has been posted.",
+        "content": "ACM Announces...",
         "embeds": [embed]
     }
 
