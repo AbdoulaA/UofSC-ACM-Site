@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Instagram } from "lucide-react";
 import { FaDiscord } from "react-icons/fa";
 
-
-
 const About: React.FC = () => {
   return (
     <main className="pt-20 min-h-screen bg-background">
@@ -16,8 +14,8 @@ const About: React.FC = () => {
             About ACM at UofSC
           </h1>
           <p className="text-primary-foreground/70 max-w-2xl mx-auto">
-            The University of South Carolina's chapter of the Association for
-            Computing Machinery, the world's largest computing society.
+            We're the ACM (Association for Computing Machinery) Chapter at the
+            University of South Carolina.
           </p>
         </div>
       </section>
@@ -41,28 +39,28 @@ const About: React.FC = () => {
         </div>
       </section>
 
-{/* ACM Wiki Section */}
-<section className="py-16 bg-muted/30">
-  <div className="container mx-auto px-4">
-    <div className="max-w-3xl mx-auto text-center">
-      <h2 className="text-3xl font-display font-bold text-foreground mb-6">
-        ACM Wiki
-      </h2>
+      {/* ACM Wiki Section */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-display font-bold text-foreground mb-6">
+              ACM Wiki
+            </h2>
 
-      <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-        We’re building a community-driven knowledge base for UofSC students
-        interested in computing. Stay tuned!
-      </p>
+            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+              We’re building a community-driven knowledge base for UofSC
+              students interested in computing. Stay tuned!
+            </p>
 
-      <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-card border border-border shadow-sm">
-        <Calendar className="w-5 h-5 text-muted-foreground" />
-        <span className="text-sm text-muted-foreground">
-          Coming Soon — Spring 2026
-        </span>
-      </div>
-    </div>
-  </div>
-</section>
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-card border border-border shadow-sm">
+              <Calendar className="w-5 h-5 text-muted-foreground" />
+              <span className="text-sm text-muted-foreground">
+                Coming Soon — Spring 2026
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Join Us Section */}
       <section className="py-16">
@@ -77,7 +75,7 @@ const About: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://discord.gg/XANbqEmR"
+              href="https://discord.gg/9mVHn87jpr"
               target="_blank"
               rel="noopener noreferrer"
             >

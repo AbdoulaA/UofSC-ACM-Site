@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  Sparkles,
   BookOpen,
   Trophy,
-  Book,
   User,
 } from "lucide-react";
 import Hero from "@/components/Hero";
@@ -16,12 +14,45 @@ import { useAdmin } from "@/context/AdminContext";
 import { Instagram } from "lucide-react";
 import { FaDiscord } from "react-icons/fa";
 
+const reasons = [
+  {
+    Icon: BookOpen,
+    title: "Learn stuff your classes skip",
+    description:
+      "We run workshops on things like system design, interview prep, and tools you'll actually use on the job, not just what's on the exam.",
+  },
+  {
+    Icon: Trophy,
+    title: "Get your foot in the door",
+    description:
+      "We bring in recruiters and engineers for info sessions and networking nights. The internship you want is a conversation away.",
+  },
+  {
+    Icon: User,
+    title: "Find your people",
+    description:
+      "Whether you've been coding since middle school or just declared CS last semester, you'll fit right in. No gatekeeping, just good people.",
+  },
+];
+
+const DISPLAY_MS = 10000;
+
 const Index: React.FC = () => {
   const { events, members } = useAdmin();
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCurrentIndex((i) => (i + 1) % reasons.length);
+    }, DISPLAY_MS);
+    return () => clearInterval(id);
+  }, []);
 
   // Show only first 3 events and first 4 members on homepage
   const featuredEvents = events.slice(0, 3);
   const featuredMembers = members;
+
+  const { Icon, title, description } = reasons[currentIndex];
 
   return (
     <main>
@@ -41,44 +72,31 @@ const Index: React.FC = () => {
             </p> */}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-8 rounded-2xl bg-card border border-border">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-garnet flex items-center justify-center shadow-garnet">
-                <BookOpen className="w-8 h-8 text-primary-foreground" />
+          <div className="flex flex-col items-center gap-8">
+            <div className="w-full max-w-2xl overflow-hidden">
+              <div className="p-8 rounded-2xl bg-card border border-border">
+                <div className="w-14 h-14 mb-6 rounded-2xl bg-gradient-garnet flex items-center justify-center shadow-garnet">
+                  <Icon className="w-7 h-7 text-primary-foreground" />
+                </div>
+                <h3 className="text-xl font-display font-bold text-card-foreground mb-3">
+                  {title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {description}
+                </p>
               </div>
-              <h3 className="text-xl font-display font-bold text-card-foreground mb-3">
-                Enhance your coding skills
-              </h3>
-              {/* <p className="text-muted-foreground text-sm">
-                Access workshops, study groups, and hands-on projects that 
-                complement your coursework and build real-world skills.
-              </p> */}
             </div>
 
-            <div className="text-center p-8 rounded-2xl bg-card border border-border">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-garnet flex items-center justify-center shadow-garnet">
-                <Sparkles className="w-8 h-8 text-primary-foreground" />
-              </div>
-              <h3 className="text-xl font-display font-bold text-card-foreground mb-3">
-                Connect with employers
-              </h3>
-              {/* <p className="text-muted-foreground text-sm">
-                Meet fellow students, industry professionals, and recruiters 
-                from top tech companies at our events and meetups.
-              </p> */}
-            </div>
-
-            <div className="text-center p-8 rounded-2xl bg-card border border-border">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-garnet flex items-center justify-center shadow-garnet">
-                <User className="w-8 h-8 text-primary-foreground" />
-              </div>
-              <h3 className="text-xl font-display font-bold text-card-foreground mb-3">
-                Find a community you belong in
-              </h3>
-              {/* <p className="text-muted-foreground text-sm">
-                Participate in hackathons, coding competitions, and build 
-                projects that stand out on your resume.
-              </p> */}
+            <div className="flex gap-2">
+              {reasons.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentIndex(i)}
+                  className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                    i === currentIndex ? "bg-foreground" : "bg-muted-foreground/30"
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>

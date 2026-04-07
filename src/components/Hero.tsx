@@ -1,7 +1,7 @@
-import React from 'react';
-import { ArrowRight, Code, Users, Calendar } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { ArrowRight, Code, Users, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Hero: React.FC = () => {
   return (
@@ -9,12 +9,15 @@ const Hero: React.FC = () => {
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 -left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+        <div
+          className="absolute bottom-1/4 -right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float"
+          style={{ animationDelay: "1s" }}
+        />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
       </div>
 
       {/* Grid Pattern Overlay */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M0 0h60v60H0z' fill='none' stroke='%23ffffff' stroke-width='0.5'/%3E%3C/svg%3E")`,
@@ -24,24 +27,32 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
-          <div className="mb-14">
-          </div>
+          <div className="mb-14"></div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 animate-fade-up text-primary-foreground" style={{ animationDelay: '0.1s' }}>
+          <h1
+            className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 animate-fade-up text-primary-foreground"
+            style={{ animationDelay: "0.1s" }}
+          >
             ACM at
             <br />
             <span className="text-garnet-light">UofSC</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-primary-foreground/70 max-w-2xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-We're the ACM (Association for Computing Machinery) Chapter at the University of South Carolina.
-
+          <p
+            className="text-lg md:text-xl text-primary-foreground/70 max-w-2xl mx-auto mb-10 animate-fade-up"
+            style={{ animationDelay: "0.2s" }}
+          >
+            The University of South Carolina's chapter of the Association for
+            Computing Machinery, the world's largest computing society.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-up" style={{ animationDelay: '0.3s' }}>
+          <div
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-up"
+            style={{ animationDelay: "0.3s" }}
+          >
             <Link to="/events">
               <Button variant="heroLight" size="xl">
                 Explore Events
